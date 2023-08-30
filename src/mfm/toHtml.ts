@@ -1,5 +1,5 @@
 import * as mfm from 'mfm-js';
-import { JSDOM } from "jsdom"
+import { Window } from 'happy-dom';
 import { intersperse } from '../utils/array';
 
 export type mfmHTMLConf = {
@@ -18,7 +18,7 @@ export function toHtml(tokens: mfm.MfmNode[], config: mfmHTMLConf = {}): string 
     return ""
   }
 
-  const { window } = new JSDOM('');
+  const window = new Window();
   const doc = window.document;
   let bigcnt = 0, motcnt = 0;
 
@@ -127,7 +127,7 @@ export function toHtml(tokens: mfm.MfmNode[], config: mfmHTMLConf = {}): string 
     },
 
     hashtag(token) {
-      const a = doc.createElement('a');
+      const a = doc.createElement('a') as any;
       if (token.type === "hashtag") {
         a.href = `https://${config.url || ''}/tags/${token.props.hashtag}`;
         a.target = "_blank"
@@ -166,7 +166,7 @@ export function toHtml(tokens: mfm.MfmNode[], config: mfmHTMLConf = {}): string 
     },
 
     link(token) {
-      const a = doc.createElement('a');
+      const a = doc.createElement('a') as any;
       if (token.type === "url") {
         a.href = token.props?.url;
       }
@@ -178,7 +178,7 @@ export function toHtml(tokens: mfm.MfmNode[], config: mfmHTMLConf = {}): string 
     },
 
     mention(token) {
-      const a = doc.createElement('a');
+      const a = doc.createElement('a') as any;
       if (token.type === "mention") {
         const { username, host, acct } = token.props;
         switch (host) {
@@ -221,9 +221,9 @@ export function toHtml(tokens: mfm.MfmNode[], config: mfmHTMLConf = {}): string 
     text(token) {
       const el = doc.createElement('span');
       if (token.type === "text") {
-        const nodes = (token.props.text as string).split(/\r\n|\r|\n/).map(x => doc.createTextNode(x) as Node);
+        const nodes = (token.props.text as string).split(/\r\n|\r|\n/).map(x => doc.createTextNode(x) as any);
         for (const x of intersperse<Node | 'br'>('br', nodes)) {
-          el.appendChild(x === 'br' ? doc.createElement('br') : x);
+          el.appendChild(x === 'br' ? doc.createElement('br') as any : x);
         }
         el.setAttribute('data-mfm', 'text');
       }
@@ -231,7 +231,7 @@ export function toHtml(tokens: mfm.MfmNode[], config: mfmHTMLConf = {}): string 
     },
 
     url(token) {
-      const a = doc.createElement('a');
+      const a = doc.createElement('a') as any;
       if (token.type === "url") {
         a.href = token.props.url;
         a.textContent = token.props.url;
@@ -241,7 +241,7 @@ export function toHtml(tokens: mfm.MfmNode[], config: mfmHTMLConf = {}): string 
     },
 
     search(token) {
-      const a = doc.createElement('a');
+      const a = doc.createElement('a') as any;
       if (token.type === "search") {
         a.href = `https://www.google.com/search?q=${token.props.query}`;
         a.textContent = token.props?.content;

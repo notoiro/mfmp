@@ -1,7 +1,7 @@
 {
-  "name": "@opera7133/mfmp",
+  "name": "@notoiro/mfmp",
   "version": "1.0.2-5",
-  "author": "wamo <ainznino@pm.me>",
+  "author": "notoiro <notoiro297@gmail.com>",
   "license": "MIT",
   "description": "MFM to HTML Converter",
   "main": "./dist/index.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/opera7133/mfmp.git"
+    "url": "https://github.com/notoiro/mfmp.git"
   },
   "keywords": [
     "misskey",
@@ -21,9 +21,9 @@
     "mfm"
   ],
   "bugs": {
-    "url": "https://github.com/opera7133/mfmp/issues"
+    "url": "https://github.com/notoiro/mfmp/issues"
   },
-  "homepage": "https://github.com/opera7133/mfmp#readme",
+  "homepage": "https://github.com/notoiro/mfmp#readme",
   "devDependencies": {
     "@types/mocha": "^10.0.1",
     "@types/node": "^18.13.0",
@@ -32,8 +32,7 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "@types/jsdom": "^21.1.0",
-    "jsdom": "^21.1.0",
+    "happy-dom": "^10.11.2",
     "mfm-js": "^0.23.3"
   }
 }
