@@ -17,7 +17,7 @@ export function toHtml(tokens: mfm.MfmNode[], config: mfmHTMLConf = {}): string 
     return ""
   }
 
-  const doc = new Document();
+  const doc = document.implementation.createHTMLDocument();
   let bigcnt = 0, motcnt = 0;
 
   const handlers: { [key: string]: (token: mfm.MfmNode) => any } = {
