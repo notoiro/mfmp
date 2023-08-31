@@ -1,5 +1,4 @@
 import * as mfm from 'mfm-js';
-import { Window } from 'happy-dom';
 import { intersperse } from '../utils/array';
 
 export type mfmHTMLConf = {
@@ -18,8 +17,7 @@ export function toHtml(tokens: mfm.MfmNode[], config: mfmHTMLConf = {}): string 
     return ""
   }
 
-  const window = new Window();
-  const doc = window.document;
+  const doc = new Document();
   let bigcnt = 0, motcnt = 0;
 
   const handlers: { [key: string]: (token: mfm.MfmNode) => any } = {
