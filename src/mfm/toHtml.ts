@@ -118,7 +118,7 @@ export function toHtml(tokens: mfm.MfmNode[], config: mfmHTMLConf = {}): string 
           // @ts-ignore
           el.setAttribute('src', config.emojis[token.props.name]);
         }else if(config.url){
-          el.setAttribute('src', `https://${config.url}/emojis/${token.props.name}.webp`);
+          el.setAttribute('src', `https://${config.url}/emoji/${token.props.name}.webp`);
         }else{
           return doc.createTextNode(`:${token.props.name}:`);
         }
