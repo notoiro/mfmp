@@ -6,6 +6,7 @@ export type mfmHTMLConf = {
   animate?: boolean;
   codeTagAsDiv?: boolean;
   rootTagName?: boolean;
+  emojis?: Object;
 }
 
 export function toHtml(tokens: mfm.MfmNode[], config: mfmHTMLConf = {}): string {
@@ -110,17 +111,20 @@ export function toHtml(tokens: mfm.MfmNode[], config: mfmHTMLConf = {}): string 
     },
 
     emojiCode(token) {
-      if (config.url) {
+      if(token.type === "emojiCode"){
         const el = doc.createElement('img');
-        if (token.type === "emojiCode") {
-          el.setAttribute('src', `https://${config.url}/emoji/${token.props.name}.webp`);
-          el.setAttribute('alt', token.props.name)
-        }
-        return el;
-      } else {
-        if (token.type === "emojiCode") {
+        // @ts-ignore
+        if(config.emojis && config.emojis[token.props.name]){
+          // @ts-ignore
+          el.setAttribute('src', config.emojis[token.props.name]);
+        }else if(config.url){
+          el.setAttribute('src', `https://${config.url}/emojis/${token.props.name}.webp`);
+        }else{
           return doc.createTextNode(`:${token.props.name}:`);
         }
+        el.setAttribute('alt', token.props.name);
+
+        return;
       }
     },
 
