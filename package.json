@@ -1,6 +1,6 @@
 {
   "name": "@notoiro/mfmp",
-  "version": "1.0.2-5",
+  "version": "1.0.3",
   "author": "notoiro <notoiro297@gmail.com>",
   "license": "MIT",
   "description": "MFM to HTML Converter",
