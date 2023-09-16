@@ -124,7 +124,7 @@ export function toHtml(tokens: mfm.MfmNode[], config: mfmHTMLConf = {}): string 
         }
         el.setAttribute('alt', token.props.name);
 
-        return;
+        return el;
       }
     },
 
